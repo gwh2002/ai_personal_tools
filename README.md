@@ -12,8 +12,8 @@ Codex CLI
 I have Cursor $20/mo solely for the tab autocomplete
 
 ## currently testing
-Coderabbit
-AntAI
+Coderabbit \
+AntAI \
 Grok
 
 ## want to test
