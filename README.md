@@ -5,17 +5,15 @@ updated Oct 23
 Codex CLI
 
 ## daily drivers
-1/ Codex CLI \
-2/ Claude Code CLI \
+1/ Codex CLI ($200/mo sub)\
+2/ Claude Code CLI ($200/mo sub)\
 3/ Gemini (free)
 
-## mainstay subscriptions
-ChatGPT - the $200/mo one \
-Claude - the $200/mo one \
-Cursor - $20/mo for tab autocomplete
+I have Cursor $20/mo solely for the tab autocomplete
 
 ## currently testing
 Coderabbit
+AntAI
 Grok
 
 ## want to test
