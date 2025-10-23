@@ -25,7 +25,7 @@ ccusage - https://ccusage.com/ - in the past, I used to track my Claude Code usa
 lovable - building toy javascript dashboards; seemed really hard to maintain / advance
 
 # Repo Contents
-## AI
+## Coding Agent Prompts
 1_claude_code_agent_system - slightly modified version of the original prompts I found here: https://drive.google.com/drive/folders/1NNWhA1BG25uv2Iwx_e8kPHvPxcBqqGSQ?usp=drive_link \
 2_home_rolled_ai_prompts - this is what I used before I started using Codex & #1 above \
 ## Other
