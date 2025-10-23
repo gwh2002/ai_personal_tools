@@ -1,0 +1,44 @@
+{
+  "goal": "Produce a system design recommendation summarizing architectural choices, tradeoffs, and rationale for the Bellaventure project.",
+  "output_template": "/mnt/data/ai_agent_prompts/system_design.md",
+  "expected_input": {
+    "design_spec": "Path to the design specification document (provided externally).",
+    "project_readme": "/Users/greghills/dev/ab-bellaventure/README.md"
+  },
+  "steps": [
+    {
+      "title": "Review Source Materials",
+      "instruction": [
+        "Open and review the design spec document provided externally.",
+        "Open and review the project README at `/Users/greghills/dev/ab-bellaventure/README.md`."
+      ]
+    },
+    {
+      "title": "Create Output File",
+      "instruction": "In the same directory as 'design_spec.md', create `<agent_name>_<YYYY-MM-DD>_system_design.md` following the scaffold at `output_template`."
+    },
+    {
+      "title": "Draft System Design",
+      "instruction": "Populate the scaffold sections: directory structure, storage structure, and key design decisions/tradeoffs. Respect all constraints and thematic preferences."
+    },
+    {
+      "title": "Finalize",
+      "instruction": "Ensure Markdown is clear, concise, and compliant with constraints. STOP and await human review before implementation."
+    }
+  ],
+  "constraints": [
+    "Python only.",
+    "Cloud Logging only (no alternative logging tech).",
+    "Use requirements.in and requirements.txt for dependencies.",
+    "Do not partition or cluster BigQuery tables."
+  ],
+  "preferences": [
+    "Simplicity over performance/cost control.",
+    "Centralize logic in version-controlled code over external sources."
+  ],
+  "data_context": [
+    "Dataset < 1M rows.",
+    "Monthly granularity typical; sometimes daily.",
+    "No clustering or partitioning."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "goal": "Perform a structured peer review of another AI system\u2019s bug and reliability assessment for a given service, and produce a unified prioritized revision.",
+  "output_template": "docs/agents_gh/4_peer_review_assessment.md",
+  "expected_input": {
+    "service_directory": "Absolute path to the target service directory (provided externally).",
+    "peer_assessment_template": "/Users/greghills/dev/ab-bellaventure/docs/agents_gh/4_peer_review_assessment.md"
+  },
+  "steps": [
+    {
+      "title": "Review Agent Rules",
+      "instruction": "Review the agent rules at `docs/ai_agents/agent_rules.md` and follow instructions."
+    },
+    {
+      "title": "Load Assessments",
+      "instruction": "Look in the same directory as the peer review spec. Review all the markdown files which you did not author."
+    },
+    {
+      "title": "Compare Findings",
+      "instruction": "Identify what the peer caught that you missed and vice versa, citing file/line or issue type."
+    },
+    {
+      "title": "Evaluate Priorities",
+      "instruction": "Assess the peer\u2019s severity ratings and immediate fixes ordering; propose any reordering with justification."
+    },
+    {
+      "title": "Challenge Risky Recommendations",
+      "instruction": "Flag any fixes that may introduce regressions or premature architectural changes. Suggest safer alternatives."
+    },
+    {
+      "title": "Identify Missed Reliability Issues",
+      "instruction": "Surface critical edge cases, data-integrity risks, and monitoring gaps that neither review covered."
+    },
+    {
+      "title": "Synthesize Updated Assessment",
+      "instruction": "Focus on 3\u20135 most critical data-loss/corruption risks, highest-ROI reliability fixes, and quick wins."
+    },
+    {
+      "title": "Score Peer Review",
+      "instruction": "Apply the required 0\u20135 scoring across metrics with brief evidence, as per the scaffold."
+    },
+    {
+      "title": "Save v2 File",
+      "instruction": "Write `[agent_name]_assessment_v2_[timestamp].md` to the same directory as the peer review spec, following the scaffold at `output_template`."
+    }
+  ],
+  "notes": [
+    "Prioritize production reliability and data integrity over code aesthetics.",
+    "Use clear Markdown, fenced code blocks for diffs/commands.",
+    "Explicitly state if both assessments are fully aligned."
+  ]
+}

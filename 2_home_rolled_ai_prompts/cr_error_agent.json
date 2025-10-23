@@ -1,0 +1,42 @@
+{
+  "goal": "Diagnose, fix, and redeploy a failing Google Cloud Run service.",
+  "output_template": "/docs/agents_gh/2b_error_recovery_loop_error_provided.md",
+  "expected_input": {
+    "service_name": "The name of the service that is failing."
+  },
+  "steps": [
+    {
+      "title": "Review Error Logs",
+      "instruction": "Review the error logs provided in the expected input."
+    },
+    {
+      "title": "Generate Error Report",
+      "instruction": "Summarize each error: timestamp, message, stack trace, file/line (if available). Populate the Markdown using the scaffold specified by `output_template`. Save as `error_report_<timestamp>.md` in the service directory. STOP and await human approval."
+    },
+    {
+      "title": "Implement Fix (after approval)",
+      "instruction": "Apply minimal, targeted changes addressing confirmed errors. Document each fix in the same Markdown file."
+    },
+    {
+      "title": "Run Local Tests",
+      "instruction": "Execute local tests. If any fail, fetch new logs and repeat from 'Fetch Error Logs' until tests pass."
+    },
+    {
+      "title": "Deploy to Cloud Run",
+      "instruction": "Deploy with: `gcloud run deploy <service-name> --source . --region us-central1`. On failure, capture full output and propose fix in the Markdown, then resolve and redeploy."
+    },
+    {
+      "title": "Force Scheduler Job",
+      "instruction": "Use `/Users/greghills/dev/ab-bellaventure/infrastructure/schedulers/README.md` to find the command to force run the scheduler job. Record outcome in Markdown."
+    },
+    {
+      "title": "Confirm Successful Run",
+      "instruction": "Verify service run completion. If not successful, re-enter the loop starting at 'Fetch Error Logs'. Update the Markdown with final status and deployment details."
+    }
+  ],
+  "notes": [
+    "Pause automatically for human approval after the initial error report.",
+    "Use fenced code blocks in Markdown for logs, traces, and commands.",
+    "Keep all edits minimal and well-documented."
+  ]
+}

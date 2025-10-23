@@ -1,0 +1,8 @@
+# No external dependencies required
+# This script uses only Python standard library and gcloud CLI
+#
+# Prerequisites:
+# - Python 3.7+
+# - gcloud CLI installed and configured
+# - Authenticated with: gcloud auth login
+# - Project set: gcloud config set project assembled-wh

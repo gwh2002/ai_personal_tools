@@ -1,0 +1,59 @@
+{
+  "goal": "Diagnose, fix, and redeploy a failing Google Cloud Run service.",
+  "output_template": "docs/agents_gh/2a_error_recovery_loop.md",
+  "expected_input": {
+    "service_directory": "Absolute path to the service directory. Used as the working directory.",
+    "service_name": "The name of the service.",
+    "build_command": "The make command to build & deploy the service.",
+    "run_command": "The make command to run the service.",
+    "output_template": "The path to the output template."
+
+  "steps": [ 
+    {
+      "title": "Fetch Error Logs",
+      "instruction": "Use the CLI to fetch only error-level Cloud Logging entries for the service.",
+      "example_commands": [
+        "gcloud logging read 'resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"<service-name>\" AND severity>=ERROR' --limit 100 --format=json"
+      ]
+    },
+    {
+      "title": "Generate Error Report",
+      "instruction": "Summarize each error: timestamp, message, stack trace, file/line (if available). Record your findings in the same directory as spec.md. Use the /Users/greghills/dev/ab-bellaventure/docs/agents_gh/2a_error_recovery_loop.md. "
+    },
+    {
+      "title": "Wait for human approval",
+      "instruction": "STOP and await human approval."
+    },
+    
+    {
+      "title": "Implement Fixes",
+      "instruction": "Implement approved fixes."
+    },
+    {
+      "title": "Update changelog",
+      "instruction": "Update the changelog.md in the service directory. If a changelog does not exist, create one."
+    },
+    {
+      "title": "Run Local Tests",
+      "instruction": "Execute local tests. Modify code to fix any failures. Do not ignore tests or change the tests for the sake of passing them"
+    },
+    {
+      "title": "Deploy to Cloud Run",
+      "instruction": "Deploy by running the build_command from the repo root. Make any necessary changes to the code to fix any failures."
+    },
+    {
+      "title": "Force Scheduler Job",
+      "instruction": "Run the run_command from the repo root to run the service."
+    },
+    {
+      "title": "Confirm Successful Run",
+      "instruction": "Periodically check logs to confirm that the service completed successfully. If there are further errors, create a new version of /Users/greghills/dev/ab-bellaventure/docs/agents_gh/2a_error_recovery_loop.md  and repeat this process from "Generate Error Report"."
+    }
+  ],
+  "notes": [
+    "Pause automatically for human approval after the initial error report.",
+    "Use fenced code blocks in Markdown for logs, traces, and commands.",
+    "Keep all edits minimal and well-documented."
+  ]
+}
+}

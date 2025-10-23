@@ -1,0 +1,64 @@
+{
+  "goal": "Perform comprehensive static code review and quality analysis for a specified service directory, and record all findings in a structured, timestamped review folder.",
+  "prerequisite": {
+    "title": "Agent Rules Review",
+    "instruction": "Before analyzing any code, open and review the document at `/Users/greghills/dev/ab-bellaventure/docs/ai_agents/agent_rules.md`. Internalize all relevant behavioral, stylistic, and analytical guidelines defined there. Ensure that every subsequent action—including tone, structure, and judgment criteria—strictly follows those rules."
+  },
+  "output_templates": {
+    "review_template": "docs/agents_gh/3_code_review_analysis.md",
+    "todolist_template": "docs/ai_agents/todolist_template.md"
+  },
+  "expected_input": {
+    "service_directory": "Absolute path to the target service directory (provided externally).",
+    "service_name": "Short name of the service (e.g., ab-risk-ratings).",
+  },
+  "steps": [
+    {
+      "title": "Create Review Directory",
+      "instruction": "Construct a new directory under `/Users/greghills/dev/ab-bellaventure/dev_artifacts/reviews/` using the naming convention `{YYYY.MM.DD}_{service_name}_{agent_name}` replacing placeholder tokens (`[agent_name]`, `[service_directory]`, `[timestamp]`) with live metadata. Ensure the directory exists before proceeding."
+    },
+    {
+      "title": "Initialize Templates",
+      "instruction": "Copy the review_template into the newly created directory and name it `[agent_name]_review_[creation_timestamp].md`. Copy the todolist_template into the newly created directory and name it `[agent_name]_todolist_[creation_timestamp].md`."
+    },
+    {
+      "title": "Recursive Scan",
+      "instruction": "Analyze all files recursively in the `service_directory`, focusing on Python and relevant configuration files."
+    },
+    {
+      "title": "Identify Issues",
+      "instruction": "Detect and categorize: Syntax errors; Runtime risks; Typing issues; Performance/memory pitfalls; Style/maintainability problems. Write to the review file as you go."
+    },
+    {
+      "title": "Record Issues",
+      "instruction": "For each issue, record File, Line, Issue Summary, Why It Matters, and Suggested Fix. Populate these in the review Markdown located in the new directory. Write to the review file as you go."
+    },
+    {
+      "title": "Summarize Findings",
+      "instruction": "Add counts of critical vs minor issues and top 3 refactoring/testing recommendations. Confirm explicitly if no major issues are found. Write to the review file as you go."
+    },
+    {
+      "title": "Construct To-Do List",
+      "instruction": "Populate the todolist in line with your proposed fixes. Update the todolist file as you go. Confirm completion via explicit log message."
+    },
+    {
+      "title": "Request feedback on review and todolist",
+      "instruction": "Request feedback on the review and todolist from the peer review agent once you are done."
+    },
+    {
+      "title": "Revise if necessary and resubmit for approval",
+      "instruction": "Revise the review and todolist as necessary based on the feedback from the user."
+    },
+    {
+      "title": "Implement proposed fixes",
+      "instruction": "Implement the fixes proposed in the todolist. Confirm completion via explicit log message."
+    }
+  ],
+  "notes": [
+    "Go beyond linting—explain reasoning, architectural implications, and risk.",
+    "Group related issues to reduce noise and maintain structured readability.",
+    "All documentation must be formatted to comply with the Markdown scaffolds provided.",
+    "Ensure both review and To-Do list share consistent timestamps and identifiers.",
+    "Maintain professional, technical, and analytical tone throughout."
+  ]
+}
