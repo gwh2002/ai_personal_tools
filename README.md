@@ -16,6 +16,7 @@ Cursor - $20/mo for tab autocomplete
 
 ## currently testing
 Coderabbit
+Grok
 
 ## want to test
 Julius
